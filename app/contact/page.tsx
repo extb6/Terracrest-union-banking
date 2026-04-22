@@ -117,9 +117,13 @@ export default function ContactPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary via-primary/95 to-secondary py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-secondary py-20 lg:py-28">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-accent/20 blur-3xl animate-float" />
+            <div className="absolute -right-40 -bottom-40 h-80 w-80 rounded-full bg-white/10 blur-3xl animate-float" style={{ animationDelay: '0.5s' }} />
+          </div>
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center animate-fade-in-down">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 Contact Us
               </h1>
@@ -132,19 +136,19 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Methods */}
-        <section className="py-16">
+        <section className="py-16 bg-gradient-to-b from-transparent to-primary/5">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {contactMethods.map((method) => (
-                <Card key={method.title} className="border-border/50 text-center transition-all hover:shadow-lg">
+              {contactMethods.map((method, idx) => (
+                <Card key={method.title} className="border-border/50 text-center transition-all hover:border-primary/30 hover:shadow-xl group hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                   <CardContent className="pt-6">
-                    <div className="mx-auto mb-4 inline-flex rounded-xl bg-primary/10 p-4 text-primary">
+                    <div className="mx-auto mb-4 inline-flex rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 p-4 text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground transition-all group-hover:scale-110">
                       <method.icon className="h-6 w-6" />
                     </div>
-                    <h3 className="font-semibold">{method.title}</h3>
+                    <h3 className="font-semibold group-hover:text-primary transition-colors">{method.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{method.description}</p>
-                    <p className="mt-2 font-medium text-primary">{method.value}</p>
-                    <Button className="mt-4 w-full" variant="outline" size="sm" asChild>
+                    <p className="mt-2 font-medium text-primary group-hover:text-secondary transition-colors">{method.value}</p>
+                    <Button className="mt-4 w-full hover:scale-105 transition-transform" variant="outline" size="sm" asChild>
                       <a href={method.href}>{method.action}</a>
                     </Button>
                   </CardContent>
