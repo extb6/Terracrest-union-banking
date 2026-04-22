@@ -277,9 +277,13 @@ export default function FeaturesPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary via-primary/95 to-secondary py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-secondary py-20 lg:py-28">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-accent/20 blur-3xl animate-float" />
+            <div className="absolute -right-40 -bottom-40 h-80 w-80 rounded-full bg-white/10 blur-3xl animate-float" style={{ animationDelay: '0.5s' }} />
+          </div>
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center animate-fade-in-down">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 Features & Services
               </h1>
@@ -288,10 +292,10 @@ export default function FeaturesPage() {
                 to help you achieve your financial goals at every stage of life.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 hover:shadow-lg hover:-translate-y-0.5 transition-all" asChild>
                   <Link href="/register">Open Account</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20" asChild>
+                <Button size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20 hover:shadow-lg hover:-translate-y-0.5 transition-all" asChild>
                   <Link href="/contact">Talk to an Advisor</Link>
                 </Button>
               </div>
@@ -300,9 +304,9 @@ export default function FeaturesPage() {
         </section>
 
         {/* Personal Banking Section */}
-        <section id="personal" className="scroll-mt-20 py-20 lg:py-28">
+        <section id="personal" className="scroll-mt-20 py-20 lg:py-28 bg-gradient-to-b from-transparent to-primary/5">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-16">
+            <div className="mb-16 animate-fade-in-down">
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">Personal Banking</p>
               <h2 className="mt-2 text-balance text-3xl font-bold sm:text-4xl">
                 Banking That Works for You
@@ -313,19 +317,19 @@ export default function FeaturesPage() {
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2">
-              {personalBankingFeatures.map((feature) => (
-                <Card key={feature.title} className="border-border/50 transition-all hover:shadow-lg">
+              {personalBankingFeatures.map((feature, idx) => (
+                <Card key={feature.title} className="border-border/50 transition-all hover:border-primary/30 hover:shadow-xl hover-lift group animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                   <CardHeader>
-                    <div className="mb-2 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
+                    <div className="mb-2 inline-flex rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 p-3 text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground transition-all group-hover:scale-110">
                       <feature.icon className="h-6 w-6" />
                     </div>
-                    <CardTitle>{feature.title}</CardTitle>
-                    <CardDescription className="text-base">{feature.description}</CardDescription>
+                    <CardTitle className="group-hover:text-primary transition-colors">{feature.title}</CardTitle>
+                    <CardDescription className="text-base group-hover:text-foreground transition-colors">{feature.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="grid grid-cols-2 gap-2">
                       {feature.features.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                           <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                           <span>{item}</span>
                         </li>
